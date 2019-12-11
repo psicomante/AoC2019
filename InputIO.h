@@ -8,11 +8,16 @@ using namespace std;
 vector<string> readInput(int day, int part) {
     std::ifstream infile("d" + to_string(day) + "p" + to_string(part) + ".txt");
 
+    if (!infile.is_open()) throw runtime_error("Error opening the file");
+
     std::string line;
     std::vector<string> lines;
+
     while(infile >> line) {
         lines.push_back(line);
     }
+
+    if(infile.bad()) throw runtime_error("Error reading the file");
 
     return lines;
 }
